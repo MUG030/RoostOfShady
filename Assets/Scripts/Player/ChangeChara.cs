@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using StarterAssets;
 
 public class ChangeChara : MonoBehaviour {
@@ -10,6 +11,8 @@ public class ChangeChara : MonoBehaviour {
     //　操作可能なゲームキャラクター
     [SerializeField]
     private List<GameObject> charaList;
+
+    public CinemachineVirtualCamera priorityCamera;
 
     void Start () {
         //　最初の操作キャラクターを0番目のキャラクターにする
@@ -35,11 +38,13 @@ public class ChangeChara : MonoBehaviour {
         if (move2D != null) {
             move2D.enabled = false;
         }
+
         //　次のキャラクターの番号を設定
         var nextChara = tempNowChara + 1;
         if(nextChara >= charaList.Count) {
             nextChara = 0;
         }
+        
         //　次のキャラクターを動かせるようにする
         controller = charaList[nextChara].GetComponent<ThirdPersonController>();
         if (controller != null) {
@@ -48,6 +53,12 @@ public class ChangeChara : MonoBehaviour {
         move2D = charaList[nextChara].GetComponent<CharaMove2D>();
         if (move2D != null) {
             move2D.enabled = true;
+        }
+
+        // priorityCameraのFollowを設定
+        var playerCameraRoot = charaList[nextChara].transform.Find("PlayerCameraRoot");
+        if (playerCameraRoot != null) {
+            priorityCamera.Follow = playerCameraRoot;
         }
         //　現在のキャラクター番号を保持する
         nowChara = nextChara;
