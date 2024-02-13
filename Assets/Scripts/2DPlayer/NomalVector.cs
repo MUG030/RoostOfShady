@@ -25,16 +25,17 @@ public class NomalVector : MonoBehaviour
             Vector3 hitNormal = hit.normal;
 
             // Calculate the rotation to be perpendicular to the hit surface
-            Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hitNormal) * transform.rotation;
+            Quaternion targetRotation = Quaternion.LookRotation(hitNormal);
 
             // Save the current Z rotation
             float currentZRotation = transform.eulerAngles.z;
+            float currentXRotation = transform.eulerAngles.x;
 
             // Apply the rotation
             transform.rotation = targetRotation;
 
             // Reset the Z rotation to the saved value
-            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, currentZRotation);
+            transform.rotation = Quaternion.Euler(currentXRotation, transform.eulerAngles.y - 180, currentZRotation);
         }
     }
 }
