@@ -673,10 +673,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   CinemachineCameraTarget: {fileID: 454898147}
-  TopClamp: 70
-  BottomClamp: -30
+  TopClamp: 0
+  BottomClamp: 0
   CameraAngleOverride: 0
-  LockCameraPosition: 0
+  LockCameraPosition: 1
 --- !u!143 &758098367
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1439,7 +1439,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25, y: 0.06, z: 0}
 --- !u!114 &3435266455353266831
 MonoBehaviour:
   m_ObjectHideFlags: 0
