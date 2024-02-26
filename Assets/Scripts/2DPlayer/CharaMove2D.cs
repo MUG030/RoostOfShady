@@ -18,7 +18,10 @@ public class CharaMove2D : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         
-        Vector2 moveMent = new Vector2(moveHorizontal, 0);
-        _rb.velocity = moveMent * _speed;
+        // 入力をカメラの向きに変換
+        Vector3 baseDirection = Camera.main.transform.right;
+        Vector3 moveDirection = baseDirection * moveHorizontal;
+
+        _rb.velocity = moveDirection * _speed;
     }
 }

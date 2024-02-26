@@ -5,37 +5,44 @@ using UnityEngine;
 public class NomalVector : MonoBehaviour
 {
     public float rayDistance = 10.0f;
+    public float rotationTime = 1.5f; // 角度を変える時間
+
+    private Quaternion targetRotation; // 目標の回転
+    private float rotationProgress = -1; // 回転の進行度（-1は回転が始まっていないことを示す）
 
     void Update()
     {
-        // Create a ray from the transform in the forward direction
         Ray ray = new Ray(transform.position, transform.forward);
 
-        // Draw the ray in the Scene view
         Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red);
 
-        // Raycast and check if it hits something
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, rayDistance))
         {
-            // Output the name of the hit object to the console
-            Debug.Log("Ray hit object: " + hit.transform.name);
-
-            // Get the normal of the hit surface
             Vector3 hitNormal = hit.normal;
 
-            // Calculate the rotation to be perpendicular to the hit surface
-            Quaternion targetRotation = Quaternion.LookRotation(hitNormal);
+            // hit.normalの反対方向を指すように回転を計算
+            targetRotation = Quaternion.FromToRotation(transform.forward, -hitNormal) * transform.rotation;
 
-            // Save the current Z rotation
-            float currentZRotation = transform.eulerAngles.z;
-            float currentXRotation = transform.eulerAngles.x;
+            // 回転の進行度をリセット
+            rotationProgress = 0;
+        }
 
-            // Apply the rotation
-            transform.rotation = targetRotation;
+        // 回転が始まっている場合
+        if (rotationProgress >= 0)
+        {
+            // 回転の進行度を更新
+            rotationProgress += Time.deltaTime / rotationTime;
 
-            // Reset the Z rotation to the saved value
-            transform.rotation = Quaternion.Euler(currentXRotation, transform.eulerAngles.y - 180, currentZRotation);
+            // 現在の回転から目標の回転へ徐々に変化
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationProgress);
+
+            // 回転が完了した場合
+            if (rotationProgress >= 1)
+            {
+                // 回転の進行度をリセット
+                rotationProgress = -1;
+            }
         }
     }
 }
