@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Card.uss?fileID=7433441132597879392&amp;guid=1128f898843c840b4b39996859a3acb4&amp;type=3#Card" />
+    <ui:VisualElement name="Root" class="card">
+        <ui:VisualElement name="Line" class="line" />
+        <ui:VisualElement name="Thumbnail" style="background-image: url(&apos;project://database/Assets/TCC/Contents/Characters/UnityChanSTD/Models/Materials/Texture/UCRFN_STD_Face.png?fileID=2800000&amp;guid=99d2fb2d2a45f5e4690baa23a964b4ec&amp;type=3#UCRFN_STD_Face&apos;); width: 140px; height: 140px; margin-left: 35px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; border-top-left-radius: 70px; border-bottom-left-radius: 70px; border-top-right-radius: 70px; border-bottom-right-radius: 70px;" />
+        <ui:VisualElement name="TextArea" style="flex-grow: 1; justify-content: center; -unity-font-style: normal; -unity-font: url(&apos;project://database/Assets/Fonts/MPLUSRounded1c-Regular.ttf?fileID=12800000&amp;guid=bf15ae53bd9144c2db29fe5ac3cc4fea&amp;type=3#MPLUSRounded1c-Regular&apos;);">
+            <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" style="justify-content: flex-start; font-size: 32px; -unity-font-style: bold; color: rgb(231, 231, 231);" />
+            <ui:Label tabindex="-1" text="The quick brown fox jumps over the lazy dog." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" style="font-size: 24px; color: rgb(231, 231, 231); white-space: normal;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

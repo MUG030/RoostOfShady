@@ -16,4 +16,10 @@ public class LightView : MonoBehaviour
     {
         _light.intensity = intensity;
     }
+
+    // 光の角度を設定する
+    public void SetAngle(float angle)
+    {
+        _light.transform.rotation = Quaternion.Euler(90 + angle, angle, 0);
+    }
 }

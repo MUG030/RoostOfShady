@@ -3,21 +3,30 @@ using UniRx;
 
 public class LightPresenter : MonoBehaviour
 {
-    [SerializeField] private LightView _lightView;
+    private LightView _lightView;
     private LightModel _lightModel;
 
     private void Awake()
     {
-        // 初期値として1.0を設定
-        _lightModel = new LightModel(1.0f);
+        // LightViewのインスタンスを参照
+        _lightView = GetComponent<LightView>();
+
+        _lightModel = new LightModel();
 
         // Modelの値が変更されたときにViewを更新する
         _lightModel.Intensity.Subscribe(_lightView.SetIntensity).AddTo(this);
+        _lightModel.Angle.Subscribe(_lightView.SetAngle).AddTo(this);
     }
 
-    // 光の強さを変更するメソッド
-    public void ChangeIntensity(float newIntensity)
+    // 光の強さを時間経過によって変化させるメソッド
+    public void ChangeIntensityByTime(float deltaTime, float changeSpeed)
     {
-        _lightModel.Intensity.Value = newIntensity;
+        _lightModel.Intensity.Value += deltaTime * changeSpeed;
+    }
+
+    // 角度を変動させるメソッド
+    public void ChangeAngleByTime(float deltaTime, float deltaAngle)
+    {
+        _lightModel.ChangeAngle(deltaTime * deltaAngle);
     }
 }

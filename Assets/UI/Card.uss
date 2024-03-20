@@ -1,0 +1,13 @@
+.card {
+    background-color: rgb(23, 26, 48);
+    width: 560px;
+    height: 180px;
+    flex-direction: row;
+}
+
+.line {
+    width: 15px;
+    height: 100%;
+    background-color: rgb(123, 226, 236);
+    position: absolute;
+}

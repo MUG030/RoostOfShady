@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Cinemachine;
 using StarterAssets;
 
-public class ChangeChara : MonoBehaviour {
-
+public class ChangeChara : MonoBehaviour 
+{
     //　現在どのキャラクターを操作しているか
     private int nowChara;
     //　操作可能なゲームキャラクター
@@ -28,7 +28,8 @@ public class ChangeChara : MonoBehaviour {
     }
 
     //　操作キャラクター変更メソッド
-    void ChangeCharacter(int tempNowChara) {
+    public void ChangeCharacter(int tempNowChara) 
+    {
         //　現在操作しているキャラクターを動かなくする
         var controller = charaList[tempNowChara].GetComponent<ThirdPersonController>();
         if (controller != null) {
