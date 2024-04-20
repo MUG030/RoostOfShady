@@ -18,6 +18,7 @@ public class ChangeChara : MonoBehaviour
         //　最初の操作キャラクターを0番目のキャラクターにする
         charaList[0].GetComponent<ThirdPersonController>().enabled = true;
         charaList[1].GetComponent<CharaMove2D>().enabled = false;
+        // priorityCamera.transform.rotation = Quaternion.Euler(25, 0, 0);
     }
 
     void Update () {
