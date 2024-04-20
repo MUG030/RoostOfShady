@@ -81,7 +81,8 @@ namespace PageEffectShader
             }
 
 
-            var source = renderingData.cameraData.renderer.cameraColorTarget;
+            // var source = renderingData.cameraData.renderer.cameraColorTarget;
+            var source = _cameraColorTarget;
 
             // コマンドバッファを作成
             var cmd = CommandBufferPool.Get(RenderPassName);
@@ -101,8 +102,14 @@ namespace PageEffectShader
                 _material.SetInt(_reversePropertyIs, _volume.Reverse.value ? 1 : 0);
 
                 // 元のテクスチャから一時的なテクスチャにエフェクトを適用しつつ描画
-                cmd.Blit(renderingData.cameraData.renderer.cameraColorTarget, _tempRenderTargetHandle.Identifier());
+                // cmd.Blit(renderingData.cameraData.renderer.cameraColorTarget, _tempRenderTargetHandle.Identifier());
+
+                // 元のテクスチャから一時的なテクスチャにエフェクトを適用しつつ描画
+                cmd.Blit(_cameraColorTarget, _tempRenderTargetHandle.Identifier());
             }
+
+            // 一時的なテクスチャから元のテクスチャに結果を書き戻す
+            // cmd.Blit(_tempRenderTargetHandle.Identifier(), source, _material);
 
             // 一時的なテクスチャから元のテクスチャに結果を書き戻す
             cmd.Blit(_tempRenderTargetHandle.Identifier(), source, _material);
