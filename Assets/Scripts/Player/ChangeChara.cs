@@ -14,17 +14,22 @@ public class ChangeChara : MonoBehaviour
 
     public CinemachineVirtualCamera priorityCamera;
 
+    private PageCurlController _pageCurlController;
+
     void Start () {
         //　最初の操作キャラクターを0番目のキャラクターにする
         charaList[0].GetComponent<ThirdPersonController>().enabled = true;
         charaList[1].GetComponent<CharaMove2D>().enabled = false;
         // priorityCamera.transform.rotation = Quaternion.Euler(25, 0, 0);
+
+        _pageCurlController = GetComponent<PageCurlController>();
     }
 
     void Update () {
         //　Qキーが押されたら操作キャラクターを次のキャラクターに変更する
         if(Input.GetKeyDown("q")) {
             ChangeCharacter(nowChara);
+            _pageCurlController.FlipPage();
         }
     }
 
